@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "880473137798",
+    "project_id": "firenote-82d7f",
+    "storage_bucket": "firenote-82d7f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880473137798:android:194e32e99d7cd16d5ba707",
+        "android_client_info": {
+          "package_name": "habibellah.ayata.firenote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880473137798-4rhr8tr2fame3bkr370nfq7avq3k3shl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEeqCYsizILkT0VbCp_VwvwZZwp0_SakU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "880473137798-4rhr8tr2fame3bkr370nfq7avq3k3shl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
