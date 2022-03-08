@@ -5,13 +5,16 @@ import java.util.Date;
 public class Note {
     private String title;
     private String note;
-    private Date date;
-
-    public Note(String title, String note, Date date) {
+   private String id;
+    public Note(String id,String title, String note) {
         this.title = title;
         this.note = note;
-        this.date = date;
+        this.id = id;
     }
+    public Note()
+    {
+    }
+
 
     public String getTitle() {
         return title;
@@ -29,11 +32,4 @@ public class Note {
         this.note = note;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 }

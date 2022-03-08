@@ -6,16 +6,19 @@
     android:layout_margin="10dp"
     android:layout_height="match_parent">
 <EditText
+    android:id="@+id/title_note"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="20dp"
     android:hint="Entre title"/>
     <EditText
+        android:id="@+id/note"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:hint="Entre note"/>
     <Button
+        android:id="@+id/add_note"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
