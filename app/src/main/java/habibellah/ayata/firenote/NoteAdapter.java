@@ -13,15 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.HolderView> {
-
+   RecyclerClickListener listener;
     ArrayList<Note> mNotes;
    // setOnRecyclerListener onRecyclerListener;
     Context context;
 
     //constructor
-    public NoteAdapter(Context context,ArrayList<Note> notesP) {
+    public NoteAdapter(Context context,ArrayList<Note> notesP,RecyclerClickListener listener) {
         this.mNotes = notesP;
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -52,6 +53,13 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.HolderView> {
             super(itemView);
             titleNote = itemView.findViewById(R.id.title_adapter);
             note = itemView.findViewById(R.id.note_adapter);
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    listener.onRecyclerClick(getAbsoluteAdapterPosition());
+                    return false;
+                }
+            });
         }
 
         //this function is bind information when you scroll we use it in on bind view holder
