@@ -8,11 +8,12 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AlertDialog;
-
+//in this class we can delete or update a note
 public class ShowDialogueDeleteUpdate {
     @SuppressLint("StaticFieldLeak")
     private static ShowDialogueDeleteUpdate showDialogueDeleteUpdate;
     Context contexts;
+    FireBaseOperation fireBaseOperation = FireBaseOperation.getInstance(null);
     private ShowDialogueDeleteUpdate(Context context)
     {
         this.contexts = context;
@@ -26,7 +27,9 @@ public class ShowDialogueDeleteUpdate {
 
         return showDialogueDeleteUpdate;
     }
-    public void showDialogue()
+
+    //this function to show dialogue of update or delete a note
+    public void showDialogue(Note notePosition)
     {
         final AlertDialog.Builder builder = new AlertDialog.Builder(contexts);
         LayoutInflater inflater = (LayoutInflater) contexts.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
@@ -38,7 +41,24 @@ public class ShowDialogueDeleteUpdate {
         EditText note = view1.findViewById(R.id.note);
        Button delete = view1.findViewById(R.id.delete);
        Button update = view1.findViewById(R.id.update);
+       viewsDialogueOperation(delete,update,title,note,alertDialog,notePosition);
+    }
 
+    //this function make the operation of every view in dialogue from button and edit text
+    private void viewsDialogueOperation(Button delete,Button update
+            ,EditText title,EditText note,AlertDialog alertDialog,Note notePosition)
+    {
+        title.setText(notePosition.getTitle());
+        note.setText(notePosition.getNote());
+ delete.setOnClickListener(view -> {
+     fireBaseOperation.deleteNote(notePosition);
+     alertDialog.dismiss();
+ });
 
+ update.setOnClickListener(view -> {
+     Note afterUpdate = new Note(notePosition.getId(),title.getText().toString(),note.getText().toString());
+     fireBaseOperation.updateNote(afterUpdate);
+     alertDialog.dismiss();
+ });
     }
 }

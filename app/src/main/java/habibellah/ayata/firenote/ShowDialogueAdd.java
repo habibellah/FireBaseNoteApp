@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AlertDialog;
-
+//this class to show dialogue to add new note
 public class ShowDialogueAdd {
     @SuppressLint("StaticFieldLeak")
     private static ShowDialogueAdd showDialogueAdd;
@@ -27,6 +27,8 @@ public class ShowDialogueAdd {
 
           return showDialogueAdd;
   }
+
+  //this function make a dialogue
     public void showDialogue()
     {
         final AlertDialog.Builder builder = new AlertDialog.Builder(contexts);
@@ -38,12 +40,16 @@ public class ShowDialogueAdd {
         Button add = view1.findViewById(R.id.add_note);
         EditText title = view1.findViewById(R.id.title_note);
         EditText note = view1.findViewById(R.id.note);
+        viewsDialogueOperation(add,title,note,alertDialog);
 
-
+    }
+    //this function make the operation of every view in dialogue from button and edit text
+    private void viewsDialogueOperation(Button add,EditText title,EditText note,AlertDialog alertDialog)
+    {
         add.setOnClickListener(view -> {
             fireBaseOperation.addToFireBase(title,note);
-           alertDialog.dismiss();
-       });
+            alertDialog.dismiss();
+        });
 
     }
 

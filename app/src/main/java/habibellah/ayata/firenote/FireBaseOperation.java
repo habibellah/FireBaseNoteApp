@@ -35,25 +35,35 @@ public class FireBaseOperation {
         return fireBaseOperation;
     }
 
+    //this function to store the title of note and his description in firebase
     public void addToFireBase(EditText title, EditText note)
     {
-        String id = mRef.push().getKey();
-        if(isEmpty1(title)|| isEmpty1(note))
-        {
-            Toast.makeText(context, "empty notes", Toast.LENGTH_SHORT).show();
+       if(!checkIfEmpty(title,note))
+       {
+           String id = mRef.push().getKey();
 
-        }
-        else
-        {
+           Note mNote = new Note(id,title.getText().toString(),note.getText().toString());
+           if(id != null)
+               mRef.child(id).setValue(mNote);
+       }
+       else {
 
-            Note mNote = new Note(id,title.getText().toString(),note.getText().toString());
-            if(id != null)
-                mRef.child(id).setValue(mNote);
-        }
+           Toast.makeText(context, "empty notes", Toast.LENGTH_SHORT).show();
+       }
     }
+
+    //this function to check if title and note is empty or note
+    private boolean checkIfEmpty(EditText title, EditText note)
+    {
+        return isEmpty1(title)|| isEmpty1(note);
+    }
+
+    //this function check if edit text is empty
     private boolean isEmpty1(EditText etText) {
         return etText.getText().toString().trim().length() == 0;
     }
+
+    //this function to read from firebase or get data from it
      public void readFromFireBase(ArrayList<Note> mList)
      {
          mRef.addValueEventListener(new ValueEventListener() {
@@ -62,7 +72,6 @@ public class FireBaseOperation {
                  mList.clear();
                  for(DataSnapshot noteSnapShot: snapshot.getChildren())
                  {
-
                      //noinspection CatchMayIgnoreException
                      try {
                          Note note =noteSnapShot.getValue(Note.class);
@@ -72,8 +81,6 @@ public class FireBaseOperation {
                          e.getMessage();
                      }
                  }
-
-
              }
 
              @Override
@@ -82,4 +89,18 @@ public class FireBaseOperation {
              }
          });
      }
+
+     //this function to delete note from firebase
+     public void deleteNote(Note note)
+     {
+         mRef.child(note.getId()).removeValue();
+     }
+
+     //this function to update note from firebase
+    public void updateNote(Note newNote)
+    {
+        mRef.child(newNote.getId()).setValue(newNote);
+    }
+
+
 }

@@ -1,7 +1,7 @@
 package habibellah.ayata.firenote;
 
-import java.util.Date;
-
+//this class to fill Note information of note
+@SuppressWarnings("unused")
 public class Note {
     private String title;
     private String note;
@@ -26,6 +26,14 @@ public class Note {
 
     public String getNote() {
         return note;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setNote(String note) {

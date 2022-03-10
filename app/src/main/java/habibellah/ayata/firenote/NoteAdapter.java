@@ -13,16 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.HolderView> {
-   RecyclerClickListener listener;
+   RecyclerLongClickListener longClickListener;
+   onRecyclerClickListener onRecyclerClick;
     ArrayList<Note> mNotes;
    // setOnRecyclerListener onRecyclerListener;
     Context context;
 
     //constructor
-    public NoteAdapter(Context context,ArrayList<Note> notesP,RecyclerClickListener listener) {
+    public NoteAdapter(Context context, ArrayList<Note> notesP, RecyclerLongClickListener longClickListener,onRecyclerClickListener onRecyclerClick) {
         this.mNotes = notesP;
         this.context = context;
-        this.listener = listener;
+        this.longClickListener = longClickListener;
+        this.onRecyclerClick = onRecyclerClick;
     }
 
     @NonNull
@@ -53,12 +55,15 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.HolderView> {
             super(itemView);
             titleNote = itemView.findViewById(R.id.title_adapter);
             note = itemView.findViewById(R.id.note_adapter);
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    listener.onRecyclerClick(getAbsoluteAdapterPosition());
-                    return false;
-                }
+            itemView.setOnLongClickListener(view -> {
+                Note note = mNotes.get(getAbsoluteAdapterPosition());
+                longClickListener.onRecyclerClick(getAbsoluteAdapterPosition(),note);
+                return false;
+            });
+
+            itemView.setOnClickListener(view -> {
+                Note note = mNotes.get(getAbsoluteAdapterPosition());
+                onRecyclerClick.onRecyclerClick(note);
             });
         }
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 
@@ -29,12 +30,7 @@ mList = new ArrayList<>();
     /*here the adapter of filling the information who take from thee fillLessonInfo function as an array list
         and implement a listener function take the position (number of lesson )
         and navigate to question page to get from date base the right questions  */
-        NoteAdapter notesAdapter = new NoteAdapter(this, mList, new RecyclerClickListener() {
-            @Override
-            public void onRecyclerClick(int position) {
-                showDialogueDeleteUpdate.showDialogue();
-            }
-        });
+        NoteAdapter notesAdapter = new NoteAdapter(this, mList, (position, note) -> showDialogueDeleteUpdate.showDialogue(note), this::navToAllNoteDescription);
 
         //here properties of the recycler view
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
@@ -48,9 +44,22 @@ mList = new ArrayList<>();
     @Override
     protected void onStart() {
         super.onStart();
+
+        //gat data from firebase
     fireBaseOperation.readFromFireBase(mList);
 
 
+    }
+
+    //this function to navigate to the AllNoteDescription activity
+    private void navToAllNoteDescription(Note note)
+    {
+        Intent intent = new Intent(MainActivity.this,AllNoteDescription.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("title",note.getTitle());
+        bundle.putString("note",note.getNote());
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
 
