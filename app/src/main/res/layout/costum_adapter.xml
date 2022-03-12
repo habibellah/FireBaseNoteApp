@@ -2,20 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/yellow"
     android:orientation="vertical">
 
     <LinearLayout
+        android:background="@drawable/note_background"
+        android:layout_margin="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:background="@drawable/note_background">
+      >
 
         <TextView
             android:id="@+id/title_adapter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:fontFamily="@font/aclonica"
             android:text="title"
             android:textColor="@color/black"
             android:textSize="30sp" />

@@ -13,7 +13,7 @@ public class ShowDialogueDeleteUpdate {
     @SuppressLint("StaticFieldLeak")
     private static ShowDialogueDeleteUpdate showDialogueDeleteUpdate;
     Context contexts;
-    FireBaseOperation fireBaseOperation = FireBaseOperation.getInstance(null);
+    FireBaseOperation fireBaseOperation = FireBaseOperation.getInstance();
     private ShowDialogueDeleteUpdate(Context context)
     {
         this.contexts = context;
@@ -29,10 +29,10 @@ public class ShowDialogueDeleteUpdate {
     }
 
     //this function to show dialogue of update or delete a note
-    public void showDialogue(Note notePosition)
+    public void showDialogue(Note notePosition,Context context)
     {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(contexts);
-        LayoutInflater inflater = (LayoutInflater) contexts.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
         View view1 = inflater.inflate( R.layout.update_delete_dialogue, null );
         builder.setView(view1);
         AlertDialog alertDialog = builder.create();

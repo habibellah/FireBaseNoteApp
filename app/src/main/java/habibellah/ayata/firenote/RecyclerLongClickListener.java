@@ -3,5 +3,5 @@ package habibellah.ayata.firenote;
 public interface RecyclerLongClickListener {
 
     //this interface to get the position of recycler view clicked and its note
-    void onRecyclerClick(int position,Note note);
+    void onRecyclerClick(Note note);
 }

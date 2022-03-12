@@ -51,13 +51,14 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.HolderView> {
         TextView titleNote;
         TextView  note;
 
+
         public HolderView(@NonNull View itemView) {
             super(itemView);
             titleNote = itemView.findViewById(R.id.title_adapter);
             note = itemView.findViewById(R.id.note_adapter);
             itemView.setOnLongClickListener(view -> {
                 Note note = mNotes.get(getAbsoluteAdapterPosition());
-                longClickListener.onRecyclerClick(getAbsoluteAdapterPosition(),note);
+                longClickListener.onRecyclerClick(note);
                 return false;
             });
 

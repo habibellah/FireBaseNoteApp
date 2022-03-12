@@ -19,24 +19,22 @@ import java.util.ArrayList;
 public class FireBaseOperation {
    @SuppressLint("StaticFieldLeak")
    private static FireBaseOperation fireBaseOperation;
-    Context context;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference mRef = database.getReference("Notes");
-    private FireBaseOperation(Context context)
+    private FireBaseOperation()
     {
-        this.context = context;
     }
-    public static synchronized FireBaseOperation getInstance(Context context)
+    public static synchronized FireBaseOperation getInstance()
     {
         if(fireBaseOperation == null)
         {
-            fireBaseOperation = new FireBaseOperation(context);
+            fireBaseOperation = new FireBaseOperation();
         }
         return fireBaseOperation;
     }
 
     //this function to store the title of note and his description in firebase
-    public void addToFireBase(EditText title, EditText note)
+    public void addToFireBase(EditText title, EditText note,Context context)
     {
        if(!checkIfEmpty(title,note))
        {

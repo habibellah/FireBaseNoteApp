@@ -26,6 +26,6 @@
         android:layout_margin="30dp"
         android:text="Add"
         android:textColor="@color/black"
-        android:backgroundTint="@color/yellow"
+        android:backgroundTint="@color/main"
         />
 </LinearLayout>
